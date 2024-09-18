@@ -23,8 +23,8 @@ var DIC;
 /* 봇 정보 */
 const ROBOT_START_DELAY = [ 1200, 800, 400, 200, 0 ];
 const ROBOT_TYPE_COEF = [ 1250, 750, 500, 250, 0 ];
-const ROBOT_THINK_COEF = [ 4, 2, 1, 0, 0 ]; /* 생각하는 시간 */
-const ROBOT_HIT_LIMIT = [ 1000 ]; /* 횟수 제한 */
+const ROBOT_THINK_COEF = [ 0, 0, 0, 0, 0 ]; /* 생각하는 시간 */
+const ROBOT_HIT_LIMIT = [ 10000 ]; /* 횟수 제한 */
 const ROBOT_LENGTH_LIMIT = [ 3, 4, 9, 99, 99 ]; /* 길이 제한 */
 const RIEUL_TO_NIEUN = [4449, 4450, 4457, 4460, 4462, 4467];
 const RIEUL_TO_IEUNG = [4451, 4455, 4456, 4461, 4466, 4469];
@@ -395,7 +395,6 @@ exports.readyRobot = function(robot){
 		}while(w._id.length > ROBOT_LENGTH_LIMIT[level] || robot._done.includes(w._id));
 		if(w){
 			text = w._id;
-			delay += 500 * ROBOT_THINK_COEF[level] * Math.random() / Math.log(1.1 + w.hit);
 			after();
 		}else denied();
 	}
